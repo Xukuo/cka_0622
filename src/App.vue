@@ -27,15 +27,13 @@ export default {
   },
   created() {
     this.client = new KintoneRestAPIClient({
-      baseUrl: 'https://devcamp.cybozu.cn',
+      baseUrl: process.env.BASR_URL,
       auth: {
-        username: 'cybozu0615',
-        password: 'cybozu0615',
+        username: process.env.KINTONE_USERNAME,
+        password: process.env.KINTONE_PASSWORD,
       },
     })
-    console.log(process.env.USER_NAME)
     console.log(process.env)
-    console.log()
   },
   methods: {
     addRecords(num) {
@@ -53,7 +51,7 @@ export default {
       }
       this.client.record
         .addAllRecords({
-          app: 386,
+          app: process.env.APPID,
           records: this.recordsAdd,
         })
         .then(() => {
@@ -68,7 +66,7 @@ export default {
       this.recordsUpdate = []
       this.client.record
         .getAllRecords({
-          app: 386,
+          app: process.env.APPID,
         })
         .then((resp) => {
           for (let i = 0; i < resp.length; i += 1) {
@@ -85,7 +83,7 @@ export default {
           }
           this.client.record
             .updateAllRecords({
-              app: 386,
+              app: process.env.APPID,
               records: this.recordsUpdate,
             })
             .then(() => {
