@@ -54,12 +54,7 @@ module.exports = {
   externals: {},
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        BASE_URL:'"https://devcamp.cybozu.cn"',
-        KINTONE_USERNAME: '"cybozu0615"',
-        KINTONE_PASSWORD: '"cybozu0615"',
-        APPID:387
-      }
+      'process.env': require('../dev.env'),
     }),
     new VueLoaderPlugin(),
   ],
